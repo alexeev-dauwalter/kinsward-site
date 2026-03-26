@@ -37,7 +37,7 @@ Units use A* pathfinding to navigate to their target. The pathfinder respects:
 
 ### Multi-Waypoint Plans
 
-Using [kinswardctl](/gamectl/commands/), you can assign multi-waypoint routes:
+Using [kinswardctl](/kinswardctl/commands/), you can assign multi-waypoint routes:
 
 ```bash
 kinswardctl unit-plan <entity_id> 5,0,1 5,5,1 0,5,1
@@ -65,7 +65,7 @@ Companions are Colony units that follow behavioral patterns:
 
 ### Managing Companions
 
-Use [kinswardctl companion commands](/gamectl/commands/#companions) or the in-game companion system:
+Use [kinswardctl companion commands](/kinswardctl/commands/#companions) or the in-game companion system:
 
 ```bash
 # List all companions

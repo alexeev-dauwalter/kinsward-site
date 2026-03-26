@@ -144,4 +144,4 @@ worldgen --seed 42 --json
 
 Available layers for export: `elevation`, `temperature`, `rainfall`, `wind`, `drainage`, `rivers`, `geology`, `fertility`, `vegetation`, `plates`, `biome`.
 
-You can also export region maps from a running game using [kinswardctl region-map](/gamectl/commands/#region-map).
+You can also export region maps from a running game using [kinswardctl region-map](/kinswardctl/commands/#region-map).

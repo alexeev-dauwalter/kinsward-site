@@ -57,9 +57,9 @@ export default defineConfig({
         {
           label: 'kinswardctl',
           items: [
-            { label: 'Overview', link: '/gamectl/overview/' },
-            { label: 'Commands Reference', link: '/gamectl/commands/' },
-            { label: 'Examples', link: '/gamectl/examples/' },
+            { label: 'Overview', link: '/kinswardctl/overview/' },
+            { label: 'Commands Reference', link: '/kinswardctl/commands/' },
+            { label: 'Examples', link: '/kinswardctl/examples/' },
           ],
         },
         {

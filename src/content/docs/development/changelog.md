@@ -5,7 +5,7 @@ description: Kinsward release history
 
 Release notes are also available on the [GitHub Releases page](https://github.com/alexeev-dauwalter/kinsward-site/releases).
 
-## v0.17.0 (Current)
+## v0.17.4 (Current)
 
 The current development version includes:
 

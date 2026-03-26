@@ -69,4 +69,4 @@ You can test the connection directly:
 echo '{"cmd":"Ping"}' | nc -q1 127.0.0.1 9999
 ```
 
-See the [Commands Reference](/gamectl/commands/) for the full list, or [Examples](/gamectl/examples/) for practical workflows.
+See the [Commands Reference](/kinswardctl/commands/) for the full list, or [Examples](/kinswardctl/examples/) for practical workflows.
