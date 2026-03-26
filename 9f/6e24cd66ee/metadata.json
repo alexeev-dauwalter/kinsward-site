@@ -1,0 +1,52 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "9f6e24cd66ee",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 9,
+  "files_touched": [
+    ".github/workflows/deploy.yml",
+    ".gitignore",
+    "README.md",
+    "astro.config.mjs",
+    "public/favicon.svg",
+    "src/assets/houston.webp",
+    "src/assets/logo-dark.svg",
+    "src/assets/logo-light.svg",
+    "src/content/docs/development/architecture.md",
+    "src/content/docs/development/changelog.md",
+    "src/content/docs/development/roadmap.md",
+    "src/content/docs/gamectl/commands.md",
+    "src/content/docs/gamectl/examples.md",
+    "src/content/docs/gamectl/overview.md",
+    "src/content/docs/gameplay/adventure-mode.mdx",
+    "src/content/docs/gameplay/crafting.md",
+    "src/content/docs/gameplay/overseer-mode.mdx",
+    "src/content/docs/gameplay/units.md",
+    "src/content/docs/gameplay/world-generation.md",
+    "src/content/docs/getting-started/controls.mdx",
+    "src/content/docs/getting-started/download.md",
+    "src/content/docs/getting-started/installation.md",
+    "src/content/docs/guides/example.md",
+    "src/content/docs/index.mdx",
+    "src/content/docs/reference/example.md",
+    "src/env.d.ts",
+    "src/styles/custom.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/9f/6e24cd66ee/0/metadata.json",
+      "transcript": "/9f/6e24cd66ee/0/full.jsonl",
+      "context": "/9f/6e24cd66ee/0/context.md",
+      "content_hash": "/9f/6e24cd66ee/0/content_hash.txt",
+      "prompt": "/9f/6e24cd66ee/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 96,
+    "cache_creation_tokens": 111919,
+    "cache_read_tokens": 6355725,
+    "output_tokens": 42771,
+    "api_call_count": 70
+  }
+}

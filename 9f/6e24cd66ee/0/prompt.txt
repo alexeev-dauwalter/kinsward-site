@@ -1,0 +1,443 @@
+# Task: Set up kinsward-site repository
+
+## Context
+
+We're creating a public website + release hosting repo for the game Kinsward (a Dwarf Fortress-inspired colony sim). The game source lives in a private repo. This public repo serves two purposes:
+1. Documentation site built with Astro Starlight, deployed to GitHub Pages
+2. GitHub Releases hosting for game binaries (cross-repo published from the private repo's CI)
+
+**Owner**: alexeev-dauwalter
+**Repo**: kinsward-site (public, already initialized on GitHub)
+**Domain**: kinsward.dwltr.life
+**Private game repo**: the current repo you're working in
+
+## Step 1: Scaffold the Astro Starlight project
+
+The repo is already cloned. Initialize the project inside it:
+
+```bash
+cd kinsward-site  # already cloned
+```
+
+Create `package.json`:
+
+```json
+{
+  "name": "kinsward-site",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.34",
+    "astro": "^5.7",
+    "sharp": "^0.33.0",
+    "starlight-kbd": "^0.4"
+  }
+}
+```
+
+Run `npm install`.
+
+## Step 2: Astro config
+
+Create `astro.config.mjs`. Note: `starlight-kbd` is registered as a Starlight plugin:
+
+```javascript
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+import starlightKbd from 'starlight-kbd';
+
+export default defineConfig({
+  site: 'https://kinsward.dwltr.life',
+  integrations: [
+    starlight({
+      title: 'Kinsward',
+      description: 'A Dwarf Fortress-inspired colony sim with adventure and overseer modes',
+      plugins: [starlightKbd()],
+      logo: {
+        light: './src/assets/logo-light.svg',
+        dark: './src/assets/logo-dark.svg',
+        replacesTitle: false,
+      },
+      social: {
+        github: 'https://github.com/alexeev-dauwalter/kinsward-site',
+      },
+      customCss: ['./src/styles/custom.css'],
+      sidebar: [
+        {
+          label: 'Getting Started',
+          items: [
+            { label: 'Download', link: '/getting-started/download/' },
+            { label: 'Installation', link: '/getting-started/installation/' },
+            { label: 'Controls', link: '/getting-started/controls/' },
+          ],
+        },
+        {
+          label: 'Gameplay',
+          items: [
+            { label: 'Adventure Mode', link: '/gameplay/adventure-mode/' },
+            { label: 'Overseer Mode', link: '/gameplay/overseer-mode/' },
+            { label: 'World Generation', link: '/gameplay/world-generation/' },
+            { label: 'Units & Companions', link: '/gameplay/units/' },
+            { label: 'Crafting', link: '/gameplay/crafting/' },
+          ],
+        },
+        {
+          label: 'kinswardctl',
+          items: [
+            { label: 'Overview', link: '/gamectl/overview/' },
+            { label: 'Commands Reference', link: '/gamectl/commands/' },
+            { label: 'Examples', link: '/gamectl/examples/' },
+          ],
+        },
+        {
+          label: 'Development',
+          items: [
+            { label: 'Roadmap', link: '/development/roadmap/' },
+            { label: 'Changelog', link: '/development/changelog/' },
+            { label: 'Architecture', link: '/development/architecture/' },
+          ],
+        },
+      ],
+    }),
+  ],
+});
+```
+
+Create `tsconfig.json`:
+```json
+{ "extends": "astro/tsconfigs/strict" }
+```
+
+## Step 3: Directory structure
+
+```
+src/
+├── assets/
+│   ├── logo-dark.svg
+│   ├── logo-light.svg
+│   └── screenshots/
+├── content/docs/
+│   ├── index.mdx                          # splash landing page
+│   ├── getting-started/
+│   │   ├── download.md
+│   │   ├── installation.md
+│   │   └── controls.mdx                   # .mdx for <Kbd> component
+│   ├── gameplay/
+│   │   ├── adventure-mode.md
+│   │   ├── overseer-mode.md
+│   │   ├── world-generation.md
+│   │   ├── units.md
+│   │   └── crafting.md
+│   ├── gamectl/
+│   │   ├── overview.md
+│   │   ├── commands.md
+│   │   └── examples.md
+│   └── development/
+│       ├── roadmap.md
+│       ├── changelog.md
+│       └── architecture.md
+├── env.d.ts
+└── styles/
+    └── custom.css
+public/
+└── favicon.svg
+.github/workflows/
+└── deploy.yml
+```
+
+## Step 4: Content
+
+### CRITICAL: Source content from the actual codebase
+
+Before writing documentation pages, **read these files from the current game repo** to ensure accuracy:
+
+- `README.md` — overview, gamectl commands, architecture
+- `.claude/skills/game-control.md` — full TCP protocol and kinswardctl CLI reference
+- `CLAUDE.md` — build commands, architecture, system execution order, world model
+- `src/bin/gamectl.rs` — actual CLI subcommands (this is the source of truth for kinswardctl docs)
+- `Cargo.toml` — current version number
+- `assets/blocks.ron` — block types (if exists)
+- `assets/items.ron` — item definitions (if exists)
+
+Use what you find to write accurate docs. Don't invent features that don't exist.
+
+### Landing page (`src/content/docs/index.mdx`)
+
+Use `template: splash` frontmatter. Include:
+- Hero section: title "Kinsward", tagline about DF-inspired dual-mode gameplay
+- Primary action: "Download Latest" → /getting-started/download/
+- Secondary action: "Read the Docs" → /getting-started/installation/
+- CardGrid with 4 cards: Adventure Mode, Overseer Mode, Living World, Deep Systems
+- Brief "Current State" section mentioning pre-1.0 active development
+- "Built with" section: Rust, Bevy 0.18, Avian2D, kinswardctl
+
+### Download page
+
+Link to `https://github.com/alexeev-dauwalter/kinsward-site/releases/latest` for both platforms. Include system requirements (Vulkan GPU, x86_64). Note that releases will appear after CI is configured.
+
+### Controls page (`controls.mdx`)
+
+Use `starlight-kbd`'s `<Kbd>` component for all keyboard shortcuts. Import at top of file:
+
+```mdx
+---
+title: Controls
+---
+
+import { Kbd } from 'starlight-kbd/components'
+
+## Adventure Mode
+
+| Action | Key |
+|--------|-----|
+| Move North | <Kbd>W</Kbd> |
+| Move West | <Kbd>A</Kbd> |
+| Move South | <Kbd>S</Kbd> |
+| Move East | <Kbd>D</Kbd> |
+| Stairs up | <Kbd>Shift+,</Kbd> |
+| Stairs down | <Kbd>Shift+.</Kbd> |
+| Pick up item | <Kbd>E</Kbd> |
+| Drop item | <Kbd>Q</Kbd> |
+| Hotbar slots | <Kbd>1</Kbd> through <Kbd>9</Kbd> |
+| Switch to Overseer | <Kbd>Tab</Kbd> |
+| World Map | <Kbd>M</Kbd> |
+| Menu | <Kbd>Escape</Kbd> |
+```
+
+Use `<Kbd>` throughout all docs pages where keyboard shortcuts are mentioned (not just the controls page). Any page referencing a key should use `.mdx` extension and import the component.
+
+### kinswardctl docs
+
+These are the most important docs — pull command reference directly from `src/bin/gamectl.rs` (the `Cmd` enum and subcommands) and `.claude/skills/game-control.md`. Include:
+- Overview: what it is, why (debugging, automation, AI agents, future multiplayer), how it connects
+- Full commands reference: every subcommand with examples
+- Practical examples: exploration, building, scripting, JSON mode
+
+**Note**: The binary is currently named `gamectl` in the source. In the docs, refer to it as `kinswardctl` (the public-facing name). Mention that in dev builds it's invoked as `cargo run --bin gamectl --`.
+
+### Gameplay docs
+
+Write based on what actually exists in the codebase. Mark planned/unimplemented features with Starlight's `:::caution[Under Development]` admonition.
+
+### Development section
+
+- **Roadmap**: Phase 0 (current, list what's done vs in progress), Phase 1 (crafting + textures), Phase 2 (overseer UI), Phase 3 (living world). Use checkboxes.
+- **Changelog**: Start with current version from Cargo.toml. Summarize what's in the current state.
+- **Architecture**: System execution order (GameSet), world model (WorldMap→Layer→Chunk), block system, command layer, climate pipeline, data-driven design (RON files).
+
+## Step 5: Custom theme
+
+Create `src/styles/custom.css` with a dark, game-like feel:
+- Dark green accent color scheme (#4c9a6e accent, #1a2332 dark background)
+- IBM Plex Sans / IBM Plex Mono fonts (import from Google Fonts)
+- Override Starlight CSS variables for both light and dark themes
+- Terminal-like code blocks (subtle border)
+- Styled download buttons (.action.primary)
+
+## Step 6: Simple logos
+
+Create SVG logos (just a monospace "K" letter):
+- `src/assets/logo-dark.svg` — light green (#8fd4a8) on transparent
+- `src/assets/logo-light.svg` — dark green (#1a4a30) on transparent
+
+Create `public/favicon.svg` — "K" on dark rounded rect.
+
+## Step 7: GitHub Actions deploy workflow
+
+Create `.github/workflows/deploy.yml`:
+
+```yaml
+name: Deploy Site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: echo "kinsward.dwltr.life" > dist/CNAME
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+## Step 8: Cross-repo release job (in the GAME repo)
+
+In the **current private game repo**, modify `.github/workflows/release.yml` to add a job after `build` and `release`:
+
+```yaml
+  publish-to-site:
+    needs: [build, release]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Rename artifacts for public release
+        run: |
+          cd artifacts
+          for f in my_game-*; do
+            newname=$(echo "$f" | sed 's/my_game/kinsward/')
+            mv "$f" "$newname" 2>/dev/null || true
+          done
+          ls -la
+
+      - name: Create release in kinsward-site
+        uses: softprops/action-gh-release@v2
+        with:
+          repository: alexeev-dauwalter/kinsward-site
+          token: ${{ secrets.SITE_REPO_TOKEN }}
+          tag_name: ${{ github.ref_name }}
+          name: "Kinsward ${{ github.ref_name }}"
+          body: |
+            ## Kinsward ${{ github.ref_name }}
+
+            ### Downloads
+            - **Windows** (x86_64): `kinsward-${{ github.ref_name }}-windows-x86_64.zip`
+            - **Linux** (x86_64): `kinsward-${{ github.ref_name }}-linux-x86_64.tar.gz`
+          files: |
+            artifacts/kinsward-*.tar.gz
+            artifacts/kinsward-*.zip
+```
+
+## Step 9: Gitignore, env.d.ts, README
+
+- `.gitignore`: node_modules/, dist/, .astro/, .env*, .DS_Store, IDE files
+- `src/env.d.ts`: `/// <reference path="../.astro/types.d.ts" />`
+- `README.md`: brief description, link to live site, dev commands, note about releases
+
+## Step 10: Verify and push
+
+```bash
+npm run build  # must succeed without errors
+git add .
+git commit -m "feat: initial site with Starlight docs, CI, and custom theme"
+git push -u origin main
+```
+
+Then tell the user they need to manually:
+1. Go to kinsward-site repo → Settings → Pages → Source: GitHub Actions
+2. Set custom domain: kinsward.dwltr.life, enable HTTPS
+3. Configure DNS: `kinsward.dwltr.life CNAME alexeev-dauwalter.github.io.`
+4. Create a Fine-grained PAT (repo scope on kinsward-site: Contents Read+Write)
+5. Add secret `SITE_REPO_TOKEN` in the private game repo
+6. Wait ~10 min for DNS + SSL
+
+## Important notes
+
+- The game binary is `my_game` in Cargo.toml but should be called `kinsward` in all public-facing docs and release artifacts
+- The CLI tool is `gamectl` in source but `kinswardctl` in public docs
+- Current game version: read from Cargo.toml (currently 0.14.0)
+- Don't invent features — if something isn't in the codebase, mark it as planned
+- Use Starlight admonitions: `:::tip`, `:::note`, `:::caution[Under Development]`
+- Use `<Kbd>` component from `starlight-kbd` for ALL keyboard shortcut mentions across all docs (not just the controls page). Any page that mentions a key must be `.mdx` and import the component.
+
+---
+
+А можем цвета поменять? Фон чисто черный и чисто белый в темной и светлой теме. Остальное тоже соответственно поменять
+
+---
+
+Давай зеленый заменим на какой-нибудь другой
+
+---
+
+синий
+
+---
+
+Почему-то у логотипчика всё ещё зеленая буква K
+
+---
+
+Отлично. Теперь убери все ссылки на kinsward и инфо о том, как собрать руками. Это в первую очередь для энтузиастов и игроков дока и сайт. Отсюда скачать удобнее и про игру узнать. Механики, что уже сделано и т.д. А репозиторий с исходным кодом приватный
+
+---
+
+Я вроде всё создал и сделал. Как теперь мне сделать деплой?
+
+---
+
+Сделай тогда коммит
+
+---
+
+[Request interrupted by user]
+
+---
+
+Please analyze this codebase and create a CLAUDE.md file, which will be given to future instances of Claude Code to operate in this repository.
+
+What to add:
+1. Commands that will be commonly used, such as how to build, lint, and run tests. Include the necessary commands to develop in this codebase, such as how to run a single test.
+2. High-level code architecture and structure so that future instances can be productive more quickly. Focus on the "big picture" architecture that requires reading multiple files to understand.
+
+Usage notes:
+- If there's already a CLAUDE.md, suggest improvements to it.
+- When you make the initial CLAUDE.md, do not repeat yourself and do not include obvious instructions like "Provide helpful error messages to users", "Write unit tests for all new utilities", "Never include sensitive information (API keys, tokens) in code or commits".
+- Avoid listing every component or file structure that can be easily discovered.
+- Don't include generic development practices.
+- If there are Cursor rules (in .cursor/rules/ or .cursorrules) or Copilot rules (in .github/copilot-instructions.md), make sure to include the important parts.
+- If there is a README.md, make sure to include the important parts.
+- Do not make up information such as "Common Development Tasks", "Tips for Development", "Support and Documentation" unless this is expressly included in other files that you read.
+- Be sure to prefix the file with the following text:
+
+```
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+```
+
+---
+
+[Request interrupted by user]
+
+---
+
+Почему-то иконка сайта тоже зеленая
+
+---
+
+Иконка вкладки в браузере
+
+---
+
+сделай коммит
