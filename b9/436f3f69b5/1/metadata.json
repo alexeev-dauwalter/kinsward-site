@@ -1,0 +1,37 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "b9436f3f69b5",
+  "session_id": "5623c2f3-f5ae-4698-a8db-38be0bf303ba",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-26T18:07:57.61046193Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "astro.config.mjs",
+    "src/content/docs/development/changelog.md",
+    "src/content/docs/gameplay/overseer-mode.mdx",
+    "src/content/docs/gameplay/units.md",
+    "src/content/docs/gameplay/world-generation.md",
+    "src/content/docs/index.mdx"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "831774b8c1b9",
+  "transcript_identifier_at_start": "20f52d20-cc8a-4e94-adb6-034f52ac75d8",
+  "token_usage": {
+    "input_tokens": 121,
+    "cache_creation_tokens": 128957,
+    "cache_read_tokens": 8615200,
+    "output_tokens": 49009,
+    "api_call_count": 87
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-26T18:07:56.998553947Z",
+    "agent_lines": 9,
+    "human_added": 511,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 520,
+    "agent_percentage": 1.7307692307692308
+  },
+  "transcript_path": ".claude/projects/-home-peter-alexeev-Projects-kinsward-site/5623c2f3-f5ae-4698-a8db-38be0bf303ba.jsonl"
+}
