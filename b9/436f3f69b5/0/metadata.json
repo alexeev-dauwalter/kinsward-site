@@ -1,0 +1,35 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "b9436f3f69b5",
+  "session_id": "4f63a591-8cb5-470b-9d0c-87149e161594",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-26T18:07:56.665259364Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/content/docs/gameplay/overseer-mode.mdx",
+    "src/content/docs/gameplay/units.md",
+    "src/content/docs/gameplay/world-generation.md",
+    "src/content/docs/kinswardctl/overview.md"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "89e9482a3b98",
+  "transcript_identifier_at_start": "ed897157-010d-4f8f-a072-b03a89c4ec43",
+  "token_usage": {
+    "input_tokens": 103,
+    "cache_creation_tokens": 48139,
+    "cache_read_tokens": 330682,
+    "output_tokens": 4298,
+    "api_call_count": 15
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-26T18:07:56.567202773Z",
+    "agent_lines": 0,
+    "human_added": 0,
+    "human_modified": 516,
+    "human_removed": 0,
+    "total_committed": 4,
+    "agent_percentage": 0
+  },
+  "transcript_path": ".claude/projects/-home-peter-alexeev-Projects-kinsward-site/4f63a591-8cb5-470b-9d0c-87149e161594.jsonl"
+}

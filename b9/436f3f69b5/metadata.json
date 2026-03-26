@@ -1,0 +1,29 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "b9436f3f69b5",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/content/docs/gameplay/overseer-mode.mdx",
+    "src/content/docs/gameplay/units.md",
+    "src/content/docs/gameplay/world-generation.md",
+    "src/content/docs/kinswardctl/overview.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/b9/436f3f69b5/0/metadata.json",
+      "transcript": "/b9/436f3f69b5/0/full.jsonl",
+      "context": "/b9/436f3f69b5/0/context.md",
+      "content_hash": "/b9/436f3f69b5/0/content_hash.txt",
+      "prompt": "/b9/436f3f69b5/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 103,
+    "cache_creation_tokens": 48139,
+    "cache_read_tokens": 330682,
+    "output_tokens": 4298,
+    "api_call_count": 15
+  }
+}
