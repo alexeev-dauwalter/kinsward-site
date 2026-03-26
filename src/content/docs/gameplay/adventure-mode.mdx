@@ -1,0 +1,67 @@
+---
+title: Adventure Mode
+description: Direct character control in Kinsward
+---
+
+import { Kbd } from 'starlight-kbd/components'
+
+Adventure mode puts you in direct control of a single character. You move through the world, mine blocks, place structures, and interact with items in real time.
+
+## Movement
+
+Move with <Kbd linux="W" /> <Kbd linux="A" /> <Kbd linux="S" /> <Kbd linux="D" /> (North/West/South/East). Hold <Kbd linux="Shift" /> to sprint.
+
+### Z-Level Navigation
+
+The world has vertical z-levels. Navigate between them using stairs:
+
+- <Kbd linux="Shift+," /> — climb stairs up
+- <Kbd linux="Shift+." /> — descend stairs down
+
+Your character stands at z=N on top of a solid block at z=N-1. The block at your feet (z=N) is usually AIR.
+
+### Surface Transitions
+
+When moving between tiles at different elevations:
+
+| Transition | Condition |
+|-----------|-----------|
+| Walk | Same z-level |
+| Step Up | Target is 1 block higher |
+| Step Down | Target is 1 block lower |
+| Fall | Target is >1 block lower (damage planned) |
+| Blocked | Target has `blocks_movement` at feet level |
+
+A tile is walkable if it does **not** have `blocks_movement` at feet level **and** has `supports_standing` below.
+
+## Block Interaction
+
+- **Left click** — mine the block at your cursor
+- **Right click** — place the selected hotbar item as a block
+
+### Z-Level Targeting
+
+By default, clicks target the wall level (z, same as your character). Use modifiers to target other levels:
+
+| Modifier | Level | Cursor Color |
+|----------|-------|-------------|
+| None | Wall (z) | White |
+| <Kbd linux="Ctrl" /> | Floor (z-1) | Blue |
+| <Kbd linux="Alt" /> | Ceiling (z+1) | Orange |
+
+Additional cursor colors: **red** = block can be mined, **green** = block can be placed.
+
+## Inventory & Hotbar
+
+Your character carries items in an inventory with a visible hotbar of 10 slots.
+
+- <Kbd linux="1" /> through <Kbd linux="0" /> — select hotbar slots
+- **Scroll wheel** — cycle through hotbar
+- <Kbd linux="Tab" /> — open/close full inventory
+- <Kbd linux="Q" /> — drop 1 item, <Kbd linux="Shift+Q" /> — drop stack, <Kbd linux="Ctrl+Q" /> — drop half
+
+Items can be block types (Stone Wall, Wood Wall, Glass Wall, etc.) which can be placed with right click, or resources (Wood, Apple) for future crafting.
+
+## Switching Modes
+
+Press <Kbd linux="B" /> to switch to [Overseer Mode](/gameplay/overseer-mode/). You can also hold <Kbd linux="B" /> for a quick peek — release to return to Adventure mode.

@@ -1,0 +1,79 @@
+---
+title: Overseer Mode
+description: RTS-style colony management in Kinsward
+---
+
+import { Kbd } from 'starlight-kbd/components'
+
+Overseer mode gives you an RTS-like top-down view. Pan the camera freely, select units, and issue commands to manage your colony.
+
+## Camera Controls
+
+| Action | Input |
+|--------|-------|
+| Pan | <Kbd linux="W" /> <Kbd linux="A" /> <Kbd linux="S" /> <Kbd linux="D" /> or Arrow keys |
+| Free pan | Middle mouse drag |
+| Change z-level | Scroll wheel |
+| Jump z-level | <Kbd linux="PageUp" /> / <Kbd linux="PageDown" /> |
+
+The camera is detached from the player — you can scroll freely across the map and through z-levels.
+
+## Unit Selection
+
+| Action | Input |
+|--------|-------|
+| Select single unit | Left click on unit |
+| Box select | Left click + drag |
+| Add to selection | <Kbd linux="Shift" /> + left click |
+| Deselect all | Left click on empty space |
+
+Selected units are highlighted and ready to receive commands.
+
+## Issuing Commands
+
+Right-click to issue a **smart command** to all selected units. The action depends on what's under the cursor:
+
+| Priority | Condition | Action |
+|----------|-----------|--------|
+| 1 | Item on tile | Pick up |
+| 2 | Solid block | Demolish |
+| 3 | Hotbar has block item | Build |
+| 4 | Default | Move to |
+
+**Command colors**: green = move, blue = build, red = demolish, yellow = pickup.
+
+Hold <Kbd linux="Shift" /> + right-click to **queue** a command (append to the unit's command queue instead of replacing it).
+
+Press <Kbd linux="Escape" /> to reset the tool mode to Auto.
+
+## Tool Modes
+
+Override the smart action with a forced tool mode:
+
+| Mode | Effect |
+|------|--------|
+| Auto | Smart action resolution (default) |
+| Force Build | Always build at cursor |
+| Force Demolish | Always demolish at cursor |
+| Force Pickup | Always pick up at cursor |
+| Force Cancel | Cancel commands at cursor |
+
+## Task System
+
+Commands issued to units are backed by a global **TaskQueue**. Tasks have types:
+
+| Task | Description |
+|------|-------------|
+| Build | Place a block at a tile |
+| Demolish | Remove a block at a tile |
+| Pickup | Pick up an entity |
+
+Idle units with the `Colony` faction automatically pick up pending tasks from the queue. Units pathfind to the target using A* and execute the command on arrival.
+
+## Zone Operations
+
+For large-scale operations, use [kinswardctl zone commands](/gamectl/commands/#zone-operations) to issue bulk build/demolish orders across rectangular areas.
+
+## Switching Back
+
+Press <Kbd linux="B" /> to return to [Adventure Mode](/gameplay/adventure-mode/).

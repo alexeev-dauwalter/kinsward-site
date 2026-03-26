@@ -1,0 +1,84 @@
+---
+title: Controls
+description: Keyboard and mouse controls for Kinsward
+---
+
+import { Kbd } from 'starlight-kbd/components'
+
+## Mode Switch
+
+| Action | Key |
+|--------|-----|
+| Toggle Adventure / Overseer | <Kbd linux="B" /> |
+
+Hold <Kbd linux="B" /> for 0.3s to quick-peek into Overseer mode; release to return.
+
+## Adventure Mode
+
+### Movement
+
+| Action | Key |
+|--------|-----|
+| Move North | <Kbd linux="W" /> |
+| Move West | <Kbd linux="A" /> |
+| Move South | <Kbd linux="S" /> |
+| Move East | <Kbd linux="D" /> |
+| Sprint | <Kbd linux="Shift" /> (hold) |
+| Climb stairs up | <Kbd linux="Shift+," /> |
+| Descend stairs down | <Kbd linux="Shift+." /> |
+
+### Block Interaction
+
+| Action | Input |
+|--------|-------|
+| Mine block | Left click |
+| Place block from hotbar | Right click |
+| Target floor level (z-1) | <Kbd linux="Ctrl" /> + click |
+| Target ceiling level (z+1) | <Kbd linux="Alt" /> + click |
+| Target wall level (z) | Click (no modifier) |
+
+**Cursor colors**: white = wall, blue = floor, orange = ceiling, red = can mine, green = can place.
+
+### Hotbar & Inventory
+
+| Action | Key |
+|--------|-----|
+| Select hotbar slot 1–10 | <Kbd linux="1" /> through <Kbd linux="0" /> |
+| Cycle hotbar | Scroll wheel |
+| Toggle inventory | <Kbd linux="Tab" /> |
+| Close inventory | <Kbd linux="Escape" /> |
+| Drop item | <Kbd linux="Q" /> |
+| Drop full stack | <Kbd linux="Shift+Q" /> |
+| Drop half stack | <Kbd linux="Ctrl+Q" /> |
+
+## Overseer Mode
+
+### Camera
+
+| Action | Input |
+|--------|-------|
+| Pan camera | <Kbd linux="W" /> <Kbd linux="A" /> <Kbd linux="S" /> <Kbd linux="D" /> or Arrow keys |
+| Free pan | Middle mouse drag |
+| Change z-level | Scroll wheel |
+| Jump z-level | <Kbd linux="PageUp" /> / <Kbd linux="PageDown" /> |
+
+### Unit Selection
+
+| Action | Input |
+|--------|-------|
+| Select unit | Left click |
+| Box select | Left click drag |
+| Add to / toggle selection | <Kbd linux="Shift" /> + left click |
+| Deselect all | Left click on empty space |
+
+### Commands
+
+| Action | Input |
+|--------|-------|
+| Smart command | Right click |
+| Queue command (append) | <Kbd linux="Shift" /> + right click |
+| Reset tool to Auto | <Kbd linux="Escape" /> |
+
+**Smart action priority**: Pick up item > Demolish block > Build (if hotbar has block) > Move to.
+
+**Command colors**: green = move, blue = build, red = demolish, yellow = pickup.

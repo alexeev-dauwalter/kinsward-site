@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import '@astrojs/starlight-tailwind';
+
+:root {
+  --sl-font: 'IBM Plex Sans', sans-serif;
+  --sl-font-mono: 'IBM Plex Mono', monospace;
+
+  --sl-color-accent-low: #1a2a4a;
+  --sl-color-accent: #5b8dd9;
+  --sl-color-accent-high: #b8d4f0;
+
+  --sl-color-white: #e0e0e0;
+  --sl-color-gray-1: #b0b0b0;
+  --sl-color-gray-2: #808080;
+  --sl-color-gray-3: #606060;
+  --sl-color-gray-4: #404040;
+  --sl-color-gray-5: #2a2a2a;
+  --sl-color-gray-6: #1a1a1a;
+  --sl-color-gray-7: #0d0d0d;
+  --sl-color-black: #000000;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #d4e4f8;
+  --sl-color-accent: #2d5fa0;
+  --sl-color-accent-high: #142844;
+
+  --sl-color-white: #1a1a1a;
+  --sl-color-gray-1: #333333;
+  --sl-color-gray-2: #555555;
+  --sl-color-gray-3: #777777;
+  --sl-color-gray-4: #999999;
+  --sl-color-gray-5: #c0c0c0;
+  --sl-color-gray-6: #e8e8e8;
+  --sl-color-gray-7: #f5f5f5;
+  --sl-color-black: #ffffff;
+}
+
+/* Terminal-style code blocks */
+pre {
+  border: 1px solid var(--sl-color-gray-5);
+}
+
+/* Download button emphasis */
+.action.primary {
+  background: var(--sl-color-accent) !important;
+  border-color: var(--sl-color-accent) !important;
+}

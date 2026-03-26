@@ -1,40 +1,45 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Kinsward
+description: A Dwarf Fortress-inspired colony sim with adventure and overseer modes
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
+  tagline: A 2D colony sim with z-levels, dual game modes, and deep procedural world generation. Explore, build, and command — all in the same world.
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Download Latest
+      link: /getting-started/download/
+      icon: down-caret
+    - text: Read the Docs
+      link: /getting-started/installation/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Two Ways to Play
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+  <Card title="Adventure Mode" icon="rocket">
+    Take direct control of a character. Explore the world, mine blocks, place structures, and navigate z-levels in real time with WASD controls.
+  </Card>
+  <Card title="Overseer Mode" icon="setting">
+    Switch to an RTS perspective. Select units, issue move/build/demolish commands, manage task queues, and coordinate your colony from above.
+  </Card>
+  <Card title="Living World" icon="sun">
+    Procedurally generated worlds with a 16-step climate pipeline — tectonic plates, rainfall simulation, river erosion, 22 biomes, and realistic vegetation.
+  </Card>
+  <Card title="Deep Systems" icon="puzzle">
+    Z-levels with stairs, shadowcasting FOV, dynamic lighting, A* pathfinding, companion AI, and a full TCP debug protocol for scripting and automation.
+  </Card>
 </CardGrid>
+
+## Current State
+
+Kinsward is in active pre-1.0 development (v0.17.0). Core systems — adventure mode, overseer mode, procedural world generation, unit commands, and the kinswardctl debug tool — are functional. Crafting, advanced AI, and textured rendering are planned for future phases.
+
+## Built With
+
+- **Rust** — systems language for performance and safety
+- **Bevy 0.18** — ECS game engine
+- **Avian2D** — 2D physics
+- **kinswardctl** — TCP-based CLI for game control, debugging, and automation
