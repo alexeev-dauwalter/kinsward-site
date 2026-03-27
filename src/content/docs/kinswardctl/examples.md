@@ -182,9 +182,17 @@ done
 Set up a test scenario quickly:
 
 ```bash
-# Spawn units for testing
-kinswardctl spawn dwarf 5 5 1 --name "Builder" --faction colony --controlled
-kinswardctl spawn dwarf 10 5 1 --name "Scout" --faction colony
+# Spawn units (names auto-generated from syllable tables)
+kinswardctl spawn dwarf 5 5 1 --faction colony
+kinswardctl spawn goblin 10 5 1 --faction hostile
+
+# Spawn with explicit name
+kinswardctl spawn dwarf 5 5 1 --name "Builder" --controlled
+
+# Check unit traits and info
+kinswardctl units
+kinswardctl unit-info 4294967305
+kinswardctl traits
 
 # Possess a unit to control directly
 kinswardctl possess 4294967305

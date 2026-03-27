@@ -30,6 +30,12 @@ Core engine and gameplay loop.
 - [x] Data-driven blocks and items (RON format)
 - [x] Zone operations (bulk build/demolish)
 - [x] Unit possession (control any Colony unit)
+- [x] Save/Load system (async save, entity persistence, autosave rotation)
+- [x] Crafting system (12 recipes, 4 stations, proximity detection)
+- [x] Race system — data-driven races (Dwarf, Goblin, Skeleton, Human, Deer, Wolf)
+- [x] Trait system — 8 innate traits assigned at spawn
+- [x] Name generation — compound names from racial syllable tables
+- [x] World name — procedurally generated, used as default save name
 
 ### In Progress
 
@@ -38,9 +44,9 @@ Core engine and gameplay loop.
 
 ## Phase 1 — Crafting & Resources
 
-- [ ] Crafting recipe system
-- [ ] Production buildings (workshops, smelters, sawmills)
-- [ ] Resource processing chains (wood → boards, ore → ingots)
+- [x] Crafting recipe system
+- [x] Production buildings (workshops, smelters, sawmills)
+- [x] Resource processing chains (wood → boards, ore → ingots)
 - [ ] Textured tile rendering (replace color-based sprites)
 - [ ] Expanded item types
 

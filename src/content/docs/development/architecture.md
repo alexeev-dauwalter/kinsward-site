@@ -143,7 +143,8 @@ color = base_color × depth_factor × light_value × visibility
 | `src/fov/` | Shadowcasting FOV, visibility maps |
 | `src/lighting/` | Light propagation |
 | `src/generation/` | Procedural generation, climate pipeline (16 modules) |
-| `src/units/` | Unit components, spawner, possession, movement |
+| `src/units/` | Unit components (Race, Faction, UnitTraits), spawner, possession, movement |
+| `src/names/` | Name generation: NameGenerator, UnitName, WorldName, syllable tables |
 | `src/overseer/` | RTS mode: camera, selection, commands, pathfinding, tasks |
 | `src/companions/` | Companion behaviors |
 | `src/ui/` | UI animation system |

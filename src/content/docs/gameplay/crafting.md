@@ -1,45 +1,87 @@
 ---
 title: Crafting
-description: Crafting and items in Kinsward
+description: Crafting system, recipes, and stations in Kinsward
 ---
 
-:::caution[Under Development]
-The crafting system is not yet implemented. This page documents the current item system and planned crafting features.
-:::
+Press **C** to open the crafting panel. It shows recipes you can craft based on your current inventory and nearby crafting stations.
 
-## Current Items
+## Crafting Stations
 
-Items exist in the game and can be picked up, dropped, and stored in your inventory. Block-type items can be placed in the world.
+Stations are placeable blocks that unlock advanced recipes. Stand within **2 tiles** of a station to use it.
 
-### Resources
+| Station | How to Get |
+|---------|-----------|
+| Workbench | Craft at Workbench (2 Plank + 4 Stick) |
+| Furnace | Place as block (found in world or via kinswardctl) |
+| Sawmill | Craft at Workbench (2 Stick + 1 Stone) |
+| Crusher | Craft at Furnace (2 Clay) |
 
-| Item | Group | Stack Size |
-|------|-------|-----------|
-| Apple | Food | 64 |
-| Wood | Resource | 64 |
+## Recipes
 
-### Block Items
+### Hand-crafted (no station)
 
-These items can be placed as blocks using right-click in [Adventure Mode](/gameplay/adventure-mode/) or Build commands in [Overseer Mode](/gameplay/overseer-mode/):
+| Input | Output |
+|-------|--------|
+| 1 Tree Trunk | 4 Stick |
+| 3 Tall Grass | 1 Rope |
 
-| Item | Places Block |
-|------|-------------|
-| Stone Wall | WALL_STONE |
-| Wood Wall | WALL_WOOD |
-| Glass Wall | GLASS_WALL |
-| Grass | GRASS |
-| Sand | SAND |
-| Dirt | DIRT |
-| Stone | STONE |
-| Snow | SNOW |
-| Ice | ICE |
-| Mud | MUD |
-| Dry Grass | DRY_GRASS |
-| Lantern | LANTERN (light source) |
-| Stairs Up | STAIRS_UP |
-| Stairs Down | STAIRS_DOWN |
+### Sawmill
 
-Items and blocks are defined in data files (`assets/items.ron` and `assets/blocks.ron`) using the RON format — no recompilation needed to add new types.
+| Input | Output |
+|-------|--------|
+| 1 Tree Trunk | 4 Plank |
+
+### Crusher
+
+| Input | Output |
+|-------|--------|
+| 1 Stone | 2 Crushed Stone |
+
+### Workbench
+
+| Input | Output |
+|-------|--------|
+| 2 Plank + 4 Stick | 1 Workbench |
+| 2 Stick + 1 Stone | 1 Sawmill |
+
+### Furnace
+
+| Input | Output |
+|-------|--------|
+| 1 Iron Ore + 1 Coal | 1 Iron Ingot |
+| 1 Copper Ore + 1 Coal | 1 Copper Ingot |
+| 1 Gold Ore + 1 Coal | 1 Gold Ingot |
+| 1 Clay | 2 Brick |
+| 2 Clay | 1 Crusher |
+| 1 Sand + 1 Crushed Stone | 1 Glass |
+
+## Items
+
+### Raw Resources
+
+| Item | Source |
+|------|--------|
+| Tree Trunk | Mine trees |
+| Tall Grass | Mine vegetation |
+| Clay | Mine clay deposits |
+| Iron Ore | Mine iron veins |
+| Copper Ore | Mine copper veins |
+| Gold Ore | Mine gold veins |
+| Coal | Mine coal deposits |
+
+### Processed Resources
+
+| Item | Made At |
+|------|---------|
+| Plank | Sawmill |
+| Stick | Hand-crafted |
+| Iron Ingot | Furnace |
+| Copper Ingot | Furnace |
+| Gold Ingot | Furnace |
+| Brick | Furnace |
+| Rope | Hand-crafted |
+| Crushed Stone | Crusher |
+| Glass | Furnace |
 
 ## Block Types
 
@@ -69,11 +111,12 @@ The world is built from block types, each with specific properties:
 
 **Movement rule**: A tile is passable if the block at feet level does not have `blocks_movement` **and** the block below has `supports_standing`.
 
-## Planned Features
+## kinswardctl Commands
 
-Future phases will introduce:
+```bash
+kinswardctl recipes              # List all recipes
+kinswardctl nearby-station       # Check nearby crafting station
+kinswardctl craft 1              # Craft recipe #1
+```
 
-- **Crafting recipes** — transform raw materials into refined goods
-- **Production buildings** — workshops, smelters, sawmills
-- **Resource chains** — wood → boards, ore → ingots → tools
-- **Farming** — grow crops, manage food supply
+Recipes and items are defined in `assets/recipes.ron` and `assets/items.ron` (RON format).

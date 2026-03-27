@@ -7,13 +7,27 @@ Units are the characters in the world — your colonists, enemies, and neutral N
 
 ## Factions
 
-Each unit belongs to a faction:
+Each unit has a **race** and a **faction**. Race determines base stats (speed, view radius, sprite) via data-driven `assets/races.ron`. Faction determines behavior class. Any race can belong to any faction.
+
+### Races
+
+| Race | Notes |
+|------|-------|
+| Dwarf | Colony default. Generated dwarven names. |
+| Goblin | Hostile default. Goblin name culture. |
+| Skeleton | Hostile default. Uses goblin name culture. |
+| Human | Neutral default. Human name culture. |
+| Deer | Wild. No generated names. |
+| Wolf | Wild. No generated names. |
+
+### Factions
 
 | Faction | Behavior |
 |---------|----------|
 | Colony | Selectable, commandable, possessable by the player |
-| Enemy | Hostile — attacks on sight |
+| Hostile | Attacks on sight |
 | Neutral | Non-hostile — future trading |
+| Wild | Passive fauna |
 
 ## Unit Commands
 
@@ -81,24 +95,61 @@ kinswardctl companion-call-all
 kinswardctl companion-dismiss-all
 ```
 
+## Traits
+
+Units of sentient races (those with name cultures — Dwarf, Goblin, Skeleton, Human) receive 0–3 random traits at spawn. Traits are descriptive for now — stat modifiers will come with the attribute system.
+
+| Trait | Category | Effect |
+|-------|----------|--------|
+| Hardy | physical | Tough constitution, resistant to cold and disease |
+| Quick Learner | mental | Picks up skills faster |
+| Strong Back | physical | Can carry heavier loads |
+| Keen | physical | Sharp senses, extended field of view |
+| Night Owl | lifestyle | More productive at night |
+| Clumsy | physical | Prone to accidents, slower at tasks |
+| Frail | physical | Weak constitution, takes more damage |
+| Firstborn | birthright | First child of lineage (not randomly assigned) |
+
+Manage traits via kinswardctl:
+
+```bash
+kinswardctl traits                          # list all traits
+kinswardctl unit-add-trait <ID> hardy       # add trait
+kinswardctl unit-remove-trait <ID> clumsy   # remove trait
+```
+
+## Names
+
+Sentient units receive generated names from racial syllable tables (defined in `assets/names.ron`). Dwarves get names like "Thorin Ironforge", goblins like "Snagnak Rotfang". Animals get descriptive names ("Deer #1").
+
+The world itself also receives a generated name (e.g. "Stormreach") from the World culture table, visible via `kinswardctl game-info`.
+
 ## Spawning Units
 
 In debug mode, new units can be spawned via kinswardctl:
 
 ```bash
-# Spawn a dwarf at position (10, 5, 1)
-kinswardctl spawn dwarf 10 5 1 --name "Urist" --faction colony --controlled
+# Spawn a dwarf colony unit at (10, 5, 1) — name auto-generated
+kinswardctl spawn dwarf 10 5 1
 
-# Possess a unit (take direct control)
-kinswardctl possess <entity_id>
+# Spawn with explicit name and faction
+kinswardctl spawn goblin 5 5 1 --faction hostile --name "Grikash"
 
-# Release possession
-kinswardctl possess
+# Spawn and possess (take direct control)
+kinswardctl spawn dwarf 0 0 1 --controlled
 ```
+
+Races: `dwarf`, `goblin`, `skeleton`, `human`, `deer`, `wolf`.
+Factions: `colony` (default), `hostile`, `neutral`, `wild`.
 
 ## Possession
 
 You can **possess** a Colony unit to take direct control in Adventure Mode. While possessing a unit, WASD moves that unit instead of the default player character.
+
+```bash
+kinswardctl possess <entity_id>   # take control
+kinswardctl possess               # release
+```
 
 :::caution[Under Development]
 Non-player AI behaviors (idle routines, enemy aggression, neutral trading) are planned but not yet implemented. Currently, units only act on explicit player commands or task queue assignments.

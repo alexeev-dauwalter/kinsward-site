@@ -148,17 +148,37 @@ kinswardctl unit-queue-clear 4294967305
 kinswardctl unit-follow 4294967305 4294967306
 ```
 
+## Traits
+
+| Command | Description |
+|---------|-------------|
+| `traits` | List all available traits |
+| `unit-add-trait <entity_id> <trait_id>` | Add a trait to a unit |
+| `unit-remove-trait <entity_id> <trait_id>` | Remove a trait from a unit |
+
+Trait IDs: `hardy`, `quicklearner`, `clumsy`, `nightowl`, `strongback`, `keen`, `frail`, `firstborn`.
+
+```bash
+kinswardctl traits
+kinswardctl unit-add-trait 4294967305 hardy
+kinswardctl unit-remove-trait 4294967305 clumsy
+```
+
 ## Spawning
 
 | Command | Description |
 |---------|-------------|
-| `spawn <kind> <x> <y> <z> [options]` | Spawn a unit |
+| `spawn <race> <x> <y> <z> [options]` | Spawn a unit |
 | `possess [entity_id]` | Possess a unit (no ID = release) |
 
-Options for `spawn`: `--name <name>`, `--faction <colony/enemy/neutral>`, `--controlled`.
+Races: `dwarf`, `goblin`, `skeleton`, `human`, `deer`, `wolf`.
+
+Options for `spawn`: `--name <name>`, `--faction <faction>` (default: colony), `--controlled`.
+Factions: `colony`, `hostile`, `neutral`, `wild`.
 
 ```bash
 kinswardctl spawn dwarf 10 5 1 --name "Urist" --faction colony --controlled
+kinswardctl spawn goblin 5 5 1 --faction hostile
 kinswardctl possess 4294967305
 kinswardctl possess
 ```
@@ -228,6 +248,37 @@ kinswardctl region-map elevation
 kinswardctl region-map elevation --format png --path elevation.png --size 1024
 kinswardctl region-map rivers --format ascii
 kinswardctl region-map biome --format stats
+```
+
+## Crafting
+
+| Command | Description |
+|---------|-------------|
+| `recipes` | List all crafting recipes |
+| `nearby-station` | Check which crafting station is nearby |
+| `craft <recipe_id>` | Craft a recipe by ID |
+
+```bash
+kinswardctl recipes
+kinswardctl nearby-station
+kinswardctl craft 1
+```
+
+## Save & Load
+
+| Command | Description |
+|---------|-------------|
+| `save [name]` | Save the world (default: `world_{seed}`) |
+| `load <name>` | Load a saved world |
+| `saves` | List all save slots |
+| `delete-save <name>` | Delete a save slot |
+
+```bash
+kinswardctl save
+kinswardctl save my_world
+kinswardctl saves
+kinswardctl load quicksave
+kinswardctl delete-save old_save
 ```
 
 ## Raw Command
