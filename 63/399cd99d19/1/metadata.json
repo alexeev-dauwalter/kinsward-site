@@ -1,0 +1,38 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "63399cd99d19",
+  "session_id": "5623c2f3-f5ae-4698-a8db-38be0bf303ba",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-27T22:08:50.409485338Z",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/content/docs/development/architecture.md",
+    "src/content/docs/development/roadmap.md",
+    "src/content/docs/gameplay/adventure-mode.mdx",
+    "src/content/docs/gameplay/crafting.md",
+    "src/content/docs/getting-started/controls.mdx"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "831774b8c1b9",
+  "transcript_identifier_at_start": "20f52d20-cc8a-4e94-adb6-034f52ac75d8",
+  "checkpoint_transcript_start": 974,
+  "transcript_lines_at_start": 974,
+  "token_usage": {
+    "input_tokens": 121,
+    "cache_creation_tokens": 128957,
+    "cache_read_tokens": 8615200,
+    "output_tokens": 49009,
+    "api_call_count": 87
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-27T22:08:49.777960591Z",
+    "agent_lines": 0,
+    "human_added": 224,
+    "human_modified": 40,
+    "human_removed": 0,
+    "total_committed": 224,
+    "agent_percentage": 0
+  },
+  "transcript_path": ".claude/projects/-home-peter-alexeev-Projects-kinsward-site/5623c2f3-f5ae-4698-a8db-38be0bf303ba.jsonl"
+}
