@@ -5,89 +5,65 @@ description: Keyboard and mouse controls for Kinsward
 
 import { Kbd } from 'starlight-kbd/components'
 
-## Mode Switch
+Quick reference for all registered keybindings. Mode-specific pages cover detailed interactions (z-level targeting, box selection, command queuing).
+
+## Global
 
 | Action | Key |
 |--------|-----|
-| Toggle Adventure / Overseer | <Kbd linux="B" /> |
-
-Hold <Kbd linux="B" /> for 0.3s to quick-peek into Overseer mode; release to return.
+| Menu / Back | <Kbd linux="Escape" /> |
+| Inventory | <Kbd linux="Tab" /> |
+| Map | <Kbd linux="M" /> |
+| Quick Save | <Kbd linux="F5" /> |
+| Quick Load | <Kbd linux="F9" /> |
 
 ## Adventure Mode
 
-### Movement
-
 | Action | Key |
 |--------|-----|
-| Move North | <Kbd linux="W" /> |
-| Move West | <Kbd linux="A" /> |
-| Move South | <Kbd linux="S" /> |
-| Move East | <Kbd linux="D" /> |
-| Sprint | <Kbd linux="Shift" /> (hold) |
-| Climb stairs up | <Kbd linux="Shift+," /> |
-| Descend stairs down | <Kbd linux="Shift+." /> |
+| Move | <Kbd linux="W" /> <Kbd linux="A" /> <Kbd linux="S" /> <Kbd linux="D" /> |
+| Mine | Left click |
+| Place | Right click |
+| Companions | <Kbd linux="N" /> |
+| Craft | <Kbd linux="C" /> |
+| Overseer | <Kbd linux="B" /> |
 
-### Block Interaction
-
-| Action | Input |
-|--------|-------|
-| Mine block | Left click |
-| Place block from hotbar | Right click |
-| Target floor level (z-1) | <Kbd linux="Ctrl" /> + click |
-| Target ceiling level (z+1) | <Kbd linux="Alt" /> + click |
-| Target wall level (z) | Click (no modifier) |
-
-**Cursor colors**: white = wall, blue = floor, orange = ceiling, red = can mine, green = can place.
-
-### Hotbar & Inventory
-
-| Action | Key |
-|--------|-----|
-| Select hotbar slot 1–10 | <Kbd linux="1" /> through <Kbd linux="0" /> |
-| Cycle hotbar | Scroll wheel |
-| Toggle inventory | <Kbd linux="Tab" /> |
-| Close inventory | <Kbd linux="Escape" /> |
-| Drop item | <Kbd linux="Q" /> |
-| Drop full stack | <Kbd linux="Shift+Q" /> |
-| Drop half stack | <Kbd linux="Ctrl+Q" /> |
-
-### Save, Load & Crafting
-
-| Action | Key |
-|--------|-----|
-| Quick Save | <Kbd linux="F5" /> |
-| Quick Load | <Kbd linux="F9" /> |
-| Open menu (Save/Load) | <Kbd linux="Escape" /> |
-| Toggle crafting panel | <Kbd linux="C" /> |
+Hold <Kbd linux="B" /> for 0.3s to quick-peek into Overseer mode; release to return. See [Adventure Mode](/gameplay/adventure-mode/) for z-level targeting, stairs, and surface transitions.
 
 ## Overseer Mode
 
-### Camera
+| Action | Key |
+|--------|-----|
+| Select | Left click |
+| Command | Right click |
+| Pan | <Kbd linux="W" /> <Kbd linux="A" /> <Kbd linux="S" /> <Kbd linux="D" /> |
+| Z-level | Scroll wheel |
+| Units | <Kbd linux="N" /> |
+| Adventure | <Kbd linux="B" /> |
 
-| Action | Input |
-|--------|-------|
-| Pan camera | <Kbd linux="W" /> <Kbd linux="A" /> <Kbd linux="S" /> <Kbd linux="D" /> or Arrow keys |
-| Free pan | Middle mouse drag |
-| Change z-level | Scroll wheel |
-| Jump z-level | <Kbd linux="PageUp" /> / <Kbd linux="PageDown" /> |
+See [Overseer Mode](/gameplay/overseer-mode/) for tool modes, unit selection, command queuing, and zone operations.
 
-### Unit Selection
+## Inventory
 
-| Action | Input |
-|--------|-------|
-| Select unit | Left click |
-| Box select | Left click drag |
-| Add to / toggle selection | <Kbd linux="Shift" /> + left click |
-| Deselect all | Left click on empty space |
+| Action | Key |
+|--------|-----|
+| Drop | <Kbd linux="Q" /> |
+| Move stack | <Kbd linux="Shift" /> + click |
 
-### Commands
+## Map View
 
-| Action | Input |
-|--------|-------|
-| Smart command | Right click |
-| Queue command (append) | <Kbd linux="Shift" /> + right click |
-| Reset tool to Auto | <Kbd linux="Escape" /> |
+| Action | Key |
+|--------|-----|
+| Next layer | <Kbd linux="Tab" /> |
+| Zoom | Scroll wheel |
+| Pan | <Kbd linux="W" /> <Kbd linux="A" /> <Kbd linux="S" /> <Kbd linux="D" /> |
 
-**Smart action priority**: Pick up item > Demolish block > Build (if hotbar has block) > Move to.
+## Debug
 
-**Command colors**: green = move, blue = build, red = demolish, yellow = pickup.
+| Action | Key |
+|--------|-----|
+| Admin Menu | <Kbd linux="`" /> |
+
+:::note
+Debug controls are only available when the game is launched with `--debug`. See [Installation](/getting-started/installation/) for details.
+:::

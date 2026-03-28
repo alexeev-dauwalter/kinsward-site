@@ -11,14 +11,14 @@ Each unit has a **race** and a **faction**. Race determines base stats (speed, v
 
 ### Races
 
-| Race | Notes |
-|------|-------|
-| Dwarf | Colony default. Generated dwarven names. |
-| Goblin | Hostile default. Goblin name culture. |
-| Skeleton | Hostile default. Uses goblin name culture. |
-| Human | Neutral default. Human name culture. |
-| Deer | Wild. No generated names. |
-| Wolf | Wild. No generated names. |
+| Race | HP | EP | Notes |
+|------|----|----|-------|
+| Dwarf | 120 | 80 | Colony default. Generated dwarven names. |
+| Goblin | 60 | 40 | Hostile default. Goblin name culture. |
+| Skeleton | 40 | 0 | Hostile default. Uses goblin name culture. |
+| Human | 100 | 60 | Neutral default. Human name culture. |
+| Deer | 80 | 50 | Wild. No generated names. |
+| Wolf | — | — | Wild. No generated names. |
 
 ### Factions
 
@@ -28,6 +28,16 @@ Each unit has a **race** and a **faction**. Race determines base stats (speed, v
 | Hostile | Attacks on sight |
 | Neutral | Non-hostile — future trading |
 | Wild | Passive fauna |
+
+## Unit Stats
+
+Each unit has three core stats displayed in the HUD and unit panels:
+
+| Stat | Description |
+|------|-------------|
+| **Health (HP)** | Hit points. Unit dies at 0. Base value depends on race. |
+| **Energy (EP)** | Energy pool for actions and sprint. Base value depends on race. |
+| **Level** | Experience level, shown as a badge in the HUD and unit cards. |
 
 ## Unit Commands
 
@@ -99,16 +109,16 @@ kinswardctl companion-dismiss-all
 
 Units of sentient races (those with name cultures — Dwarf, Goblin, Skeleton, Human) receive 0–3 random traits at spawn. Traits are descriptive for now — stat modifiers will come with the attribute system.
 
-| Trait | Category | Effect |
-|-------|----------|--------|
-| Hardy | physical | Tough constitution, resistant to cold and disease |
-| Quick Learner | mental | Picks up skills faster |
-| Strong Back | physical | Can carry heavier loads |
-| Keen | physical | Sharp senses, extended field of view |
-| Night Owl | lifestyle | More productive at night |
-| Clumsy | physical | Prone to accidents, slower at tasks |
-| Frail | physical | Weak constitution, takes more damage |
-| Firstborn | birthright | First child of lineage (not randomly assigned) |
+| Trait | Category | Rarity | Effect |
+|-------|----------|--------|--------|
+| Hardy | physical | 0.15 | Tough constitution, resistant to cold and disease |
+| Quick Learner | mental | 0.12 | Picks up skills faster |
+| Night Owl | lifestyle | 0.12 | More productive at night |
+| Clumsy | physical | 0.10 | Prone to accidents, slower at tasks |
+| Strong Back | physical | 0.10 | Can carry heavier loads |
+| Keen | physical | 0.08 | Sharp senses, extended field of view |
+| Frail | physical | 0.08 | Weak constitution, takes more damage |
+| Firstborn | birthright | special | Starting player character only — not randomly assigned |
 
 Manage traits via kinswardctl:
 

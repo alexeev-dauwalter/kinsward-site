@@ -36,6 +36,9 @@ Core engine and gameplay loop.
 - [x] Trait system — 8 innate traits assigned at spawn
 - [x] Name generation — compound names from racial syllable tables
 - [x] World name — procedurally generated, used as default save name
+- [x] UI system — dark theme, floating panels, HUD, InputRegistry, UiAnimator
+- [x] Map view — dedicated mode with layer switching, zoom, and pan
+- [x] Admin menu — debug-only panel for game administration
 
 ### In Progress
 
@@ -52,7 +55,7 @@ Core engine and gameplay loop.
 
 ## Phase 2 — Colony Management
 
-- [ ] Overseer UI panels (unit list, task overview, resource summary)
+- [x] Overseer UI panels — Settlement Bar, Toolbar, Unit List, Unit Detail, Build Menu
 - [ ] Building blueprints and templates
 - [ ] Stockpile zones
 - [ ] Farming and food production

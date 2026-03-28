@@ -5,7 +5,15 @@ description: RTS-style colony management in Kinsward
 
 import { Kbd } from 'starlight-kbd/components'
 
-Overseer mode gives you an RTS-like top-down view. Pan the camera freely, select units, and issue commands to manage your colony.
+Overseer mode gives you an RTS-like top-down view with floating dark-themed panels. Pan the camera, select units, issue commands, and manage your colony through the Settlement Bar, Toolbar, Unit List, and Unit Detail panels.
+
+## Settlement Bar
+
+A persistent bar at the top of the screen showing:
+
+- **Settlement** label
+- **Population** count (Colony faction units)
+- **Day** and **Season**
 
 ## Camera Controls
 
@@ -44,19 +52,62 @@ Right-click to issue a **smart command** to all selected units. The action depen
 
 Hold <Kbd linux="Shift" /> + right-click to **queue** a command (append to the unit's command queue instead of replacing it).
 
-Press <Kbd linux="Escape" /> to reset the tool mode to Auto.
+## Toolbar
 
-## Tool Modes
+A bottom-center toolbar with 5 buttons that override the smart action:
 
-Override the smart action with a forced tool mode:
+| Button | Mode | Effect |
+|--------|------|--------|
+| Dig | ForceDemolish | Always demolish at cursor |
+| Build | ForceBuild | Always build at cursor (opens Build Menu) |
+| Pickup | ForcePickup | Always pick up at cursor |
+| Cancel | ForceCancel | Cancel commands at cursor |
+| Auto | Auto | Smart action resolution (default) |
 
-| Mode | Effect |
-|------|--------|
-| Auto | Smart action resolution (default) |
-| Force Build | Always build at cursor |
-| Force Demolish | Always demolish at cursor |
-| Force Pickup | Always pick up at cursor |
-| Force Cancel | Cancel commands at cursor |
+Each button displays a live badge with the number of pending tasks of that type (e.g. "Dig (5)"). The active tool is highlighted. Press <Kbd linux="Escape" /> to reset to Auto.
+
+## Build Menu
+
+Selecting the **Build** tool opens a two-level menu at the bottom of the screen:
+
+**Categories:**
+
+| Category | Contents |
+|----------|----------|
+| Walls | Stone walls, wood walls, glass walls |
+| Stairs | Stairs up, stairs down |
+| Stations | Workbench, Furnace, Sawmill, Crusher |
+| Light | Lanterns |
+| Plants | Trees, bushes, tall grass |
+| Resources | Ores, clay, coal |
+| Water | Water blocks |
+| Terrain | Other terrain blocks |
+
+Each item card shows the block name and count from your inventory. Items with zero count are dimmed. Click a card to select it for placement, click again to deselect.
+
+## Unit List
+
+Press <Kbd linux="N" /> to toggle the Unit List panel on the left side of the screen. It shows a scrollable list of all Colony units.
+
+Each unit card displays:
+- **Name** and **Race**
+- Current status (Moving/Working/Idle) and coordinates
+- **Level** badge, **HP** bar, **EP** bar
+
+| Action | Effect |
+|--------|--------|
+| Single click | Select unit (camera follows) |
+| Double click | Possess unit (switch to Adventure mode) |
+
+## Unit Detail
+
+When a unit is selected, a detail panel appears on the right side showing:
+
+- Unit name
+- Level badge with HP and EP bars
+- Race and **trait pills** (colored tags for each trait)
+- Current task description
+- Command queue preview (first 5 entries)
 
 ## Task System
 

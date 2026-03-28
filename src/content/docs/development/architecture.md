@@ -119,6 +119,12 @@ A global `TaskQueue` holds Build, Demolish, and Pickup tasks. Tasks are created 
 
 Mode switching triggers camera transitions and input handler swaps.
 
+### UI System
+
+- **UiTheme** — centralized dark-theme configuration (47 color constants, 5 font sizes) applied across all panels
+- **InputRegistry** — replaces scattered input handling with 21 registered bindings across 5 contexts (Global, Adventure, Overseer, InventoryOpen, MapView); enables context-aware control hints
+- **UiAnimator** — panel transition animations (Fade, SlideUp, SlideDown, SlideLeft, SlideRight) for floating panels
+
 ### Surface Index
 
 Maps `(x, y)` columns to walkable z-levels. Used by pathfinding and grounding to determine where units can stand. Rebuilt when blocks change.
@@ -147,7 +153,7 @@ color = base_color × depth_factor × light_value × visibility
 | `src/names/` | Name generation: NameGenerator, UnitName, WorldName, syllable tables |
 | `src/overseer/` | RTS mode: camera, selection, commands, pathfinding, tasks |
 | `src/companions/` | Companion behaviors |
-| `src/ui/` | UI animation system |
+| `src/ui/` | UI system — UiTheme, InputRegistry, UiAnimator, floating panels |
 | `src/schedule.rs` | GameSet definition and ordering |
 
 ## Binaries

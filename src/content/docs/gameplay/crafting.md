@@ -3,7 +3,7 @@ title: Crafting
 description: Crafting system, recipes, and stations in Kinsward
 ---
 
-Press **C** to open the crafting panel. It shows recipes you can craft based on your current inventory and nearby crafting stations.
+Press **C** to open the crafting panel. The panel header shows the active crafting station (or "Hand" if none nearby). Each recipe displays ingredient counts as have/need (e.g. "2/4 Stick") so you can see what you still need to gather. Recipes are filtered to those available at the current station.
 
 ## Crafting Stations
 
