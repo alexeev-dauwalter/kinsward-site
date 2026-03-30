@@ -1,0 +1,36 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "23a9e2b3ee2d",
+  "session_id": "4f63a591-8cb5-470b-9d0c-87149e161594",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-30T20:46:24.228678173Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/content/docs/development/changelog.md",
+    "src/content/docs/getting-started/installation.md",
+    "src/content/docs/kinswardctl/commands.md",
+    "src/content/docs/kinswardctl/examples.md",
+    "src/content/docs/development/architecture.md"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "89e9482a3b98",
+  "transcript_identifier_at_start": "ed897157-010d-4f8f-a072-b03a89c4ec43",
+  "token_usage": {
+    "input_tokens": 104,
+    "cache_creation_tokens": 48443,
+    "cache_read_tokens": 361608,
+    "output_tokens": 4316,
+    "api_call_count": 16
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-30T20:46:24.138711349Z",
+    "agent_lines": 0,
+    "human_added": 162,
+    "human_modified": 5,
+    "human_removed": 0,
+    "total_committed": 162,
+    "agent_percentage": 0
+  },
+  "transcript_path": ".claude/projects/-home-peter-alexeev-Projects-kinsward-site/4f63a591-8cb5-470b-9d0c-87149e161594.jsonl"
+}

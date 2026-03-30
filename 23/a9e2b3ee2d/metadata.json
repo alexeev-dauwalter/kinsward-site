@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "23a9e2b3ee2d",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/content/docs/development/architecture.md",
+    "src/content/docs/development/changelog.md",
+    "src/content/docs/getting-started/installation.md",
+    "src/content/docs/kinswardctl/commands.md",
+    "src/content/docs/kinswardctl/examples.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/23/a9e2b3ee2d/0/metadata.json",
+      "transcript": "/23/a9e2b3ee2d/0/full.jsonl",
+      "context": "/23/a9e2b3ee2d/0/context.md",
+      "content_hash": "/23/a9e2b3ee2d/0/content_hash.txt",
+      "prompt": "/23/a9e2b3ee2d/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 104,
+    "cache_creation_tokens": 48443,
+    "cache_read_tokens": 361608,
+    "output_tokens": 4316,
+    "api_call_count": 16
+  }
+}
