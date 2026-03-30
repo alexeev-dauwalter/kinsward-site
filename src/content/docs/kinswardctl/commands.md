@@ -12,11 +12,13 @@ All commands are run as `kinswardctl <command> [args...]`. Add `--json` for raw 
 | `ping` | Test connection |
 | `info` | Server info (version, uptime) |
 | `game-info` | Extended game info (seed, player position, loaded chunks) |
+| `perf` | Per-system timing breakdown |
 
 ```bash
 kinswardctl ping
 kinswardctl info
 kinswardctl game-info
+kinswardctl perf
 ```
 
 ## Player State
@@ -100,11 +102,13 @@ kinswardctl rebuild-surfaces
 | `pickup-nearest` | Pick up the nearest item |
 | `drop-from-slot <slot> [count]` | Drop items from a slot |
 | `select-hotbar <slot>` | Select a hotbar slot (0-9) |
+| `inventory` | Full inventory of the focused entity |
 
 ```bash
 kinswardctl pickup-nearest
 kinswardctl drop-from-slot 0 5
 kinswardctl select-hotbar 3
+kinswardctl inventory
 ```
 
 ## Registry
@@ -254,12 +258,14 @@ kinswardctl region-map biome --format stats
 
 | Command | Description |
 |---------|-------------|
-| `recipes` | List all crafting recipes |
+| `recipes [--station <name>] [--all]` | List crafting recipes (default: available only) |
 | `nearby-station` | Check which crafting station is nearby |
 | `craft <recipe_id>` | Craft a recipe by ID |
 
 ```bash
-kinswardctl recipes
+kinswardctl recipes                          # available recipes
+kinswardctl recipes --all                    # all recipes
+kinswardctl recipes --station FURNACE --all  # recipes for a station
 kinswardctl nearby-station
 kinswardctl craft 1
 ```
@@ -279,6 +285,73 @@ kinswardctl save my_world
 kinswardctl saves
 kinswardctl load quicksave
 kinswardctl delete-save old_save
+```
+
+## Mode & View
+
+| Command | Description |
+|---------|-------------|
+| `switch-mode <mode>` | Switch game mode (adventure / overseer / map) |
+| `set-tool-mode <mode>` | Set overseer tool mode (auto / force-build / force-demolish / force-pickup / force-cancel) |
+| `set-active-z <z>` | Set the active z-level for rendering |
+
+```bash
+kinswardctl switch-mode overseer
+kinswardctl switch-mode adventure
+kinswardctl set-tool-mode auto
+kinswardctl set-active-z 0
+```
+
+## Camera
+
+| Command | Description |
+|---------|-------------|
+| `camera-move <x> <y>` | Move camera by tile offset (overseer mode) |
+| `camera-zoom <level>` | Set camera zoom level (0.1–20.0) |
+
+```bash
+kinswardctl camera-move 5 5
+kinswardctl camera-move -10 0
+kinswardctl camera-zoom 2.0
+```
+
+## Selection
+
+| Command | Description |
+|---------|-------------|
+| `select <entity_id>` | Select a unit |
+| `deselect-all` | Deselect all units |
+| `selection` | Query current selection and focus |
+
+```bash
+kinswardctl select 4294967305
+kinswardctl selection
+kinswardctl deselect-all
+```
+
+## Floor Covers
+
+| Command | Description |
+|---------|-------------|
+| `set-floor-cover <x> <y> <z> <cover>` | Set a floor cover at coordinates |
+| `remove-floor-cover <x> <y> <z>` | Remove a floor cover |
+
+Cover names: `carpet`, `blood_stain`, `puddle`.
+
+```bash
+kinswardctl set-floor-cover 5 5 0 carpet
+kinswardctl remove-floor-cover 5 5 0
+```
+
+## Lighting
+
+| Command | Description |
+|---------|-------------|
+| `light <x> <y> <z>` | Query light value at coordinates (0.0–1.0) |
+
+```bash
+kinswardctl light 0 0 1
+kinswardctl light 5 5 0
 ```
 
 ## Raw Command

@@ -121,9 +121,15 @@ Mode switching triggers camera transitions and input handler swaps.
 
 ### UI System
 
-- **UiTheme** — centralized dark-theme configuration (47 color constants, 5 font sizes) applied across all panels
+- **UiTheme** — centralized dark-theme configuration (50+ color/size constants) applied across all panels
 - **InputRegistry** — replaces scattered input handling with 21 registered bindings across 5 contexts (Global, Adventure, Overseer, InventoryOpen, MapView); enables context-aware control hints
-- **UiAnimator** — panel transition animations (Fade, SlideUp, SlideDown, SlideLeft, SlideRight) for floating panels
+- **UiAnimator** — panel transition animations (Fade, SlideUp, SlideUpHigh, SlideDown, SlideLeft, SlideRight) for floating panels
+- **Scrollbar** — vendored `bevy_scrollbar` 0.6.0 for mouse-wheel scrolling with visual thumb. Pattern: scrollable node + `Scrollbar` sibling in Row wrapper
+- **Hover effects** — `CardBaseColor` + `Hovered` component (CSS-like, includes descendants) for card hover feedback. `ButtonBaseColor` + `Button` for toolbar buttons. Both use `Hovered` from `bevy_picking`
+- **UiHovered** — centralized resource (`src/ui/picking.rs`) checking hover from `HoverMap` filtered by `Node`. Replaces all `PickingInteraction` queries
+- **Observer clicks** — all UI clicks use `On<Pointer<Click>>` observers with `event.propagate(false)`. Legacy `Interaction` polling fully removed
+- **UI picking** — panels use direct `PositionType::Absolute` positioning (no fullscreen wrapper overlays). Sprite/mesh picking disabled via `require_markers: true`. Non-interactive child nodes use `Pickable::IGNORE`
+- **UiSlotManager** — centralized panel management system
 
 ### Surface Index
 

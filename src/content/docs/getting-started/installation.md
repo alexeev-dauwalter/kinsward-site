@@ -39,6 +39,7 @@ assets/
 |------|-------------|
 | `--debug` | Enable debug mode (physics gizmos, test items, admin panel) |
 | `--seed <N>` | Set world generation seed |
+| `--save <NAME>` | Load a save file on startup, skipping world generation |
 
 ### Environment Variables
 
@@ -55,6 +56,9 @@ assets/
 
 # Debug mode with a specific seed
 ./kinsward --debug --seed 42
+
+# Load a save file directly (skip world generation)
+./kinsward --save quicksave
 
 # Seed via environment variable
 WORLD_SEED=42 ./kinsward

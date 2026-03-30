@@ -5,7 +5,44 @@ description: Kinsward release history
 
 Release notes are also available on the [GitHub Releases page](https://github.com/alexeev-dauwalter/kinsward-site/releases).
 
-## v0.21.0 (Current)
+## v0.25.0 (Current)
+
+- **14 new GameCommand variants**: SwitchMode, SetToolMode, CameraMove, CameraZoom, SelectUnit, DeselectAll, QuerySelection, SetActiveZ, SetFloorCover, RemoveFloorCover, QueryLight, QueryInventory, QueryPerf
+- **Command stubs connected**: SaveWorld/LoadWorld wired to SaveIntent/LoadIntent; QueryRecipes/Craft/QueryNearbyStation wired to CraftingRegistry
+- **SystemParam bundles**: `SpawnCmd` and `ExtCmd` bundles to work around Bevy's 16-param limit
+- **CameraCmdQueue**: dedicated queue + `apply_camera_commands` system for camera commands from TCP
+- **kinswardctl**: 12 new subcommands with human-readable formatting (switch-mode, set-tool-mode, camera-move, camera-zoom, select, deselect-all, selection, set-active-z, set-floor-cover, remove-floor-cover, light, perf)
+
+## v0.24.0
+
+- **UI picking migration**: `UiHovered` resource (centralized hover check from `HoverMap` filtered by `Node`) replaces 6 `Query<&PickingInteraction>` guard patterns
+- **Observer clicks**: all UI clicks use `On<Pointer<Click>>` observers instead of `Interaction` polling
+- **Inventory refactor**: `handle_inventory_interaction` replaced with observer `on_inventory_slot_click` + `handle_inventory_q_drop`
+- **Hover via CardBaseColor**: inventory slots and cards use `CardBaseColor` + `Hovered` component instead of manual `PickingInteraction` polling
+- **PickingInteraction removed**: completely eliminated from the codebase
+- **UiSlotManager**: centralized panel management system
+- **DebugPickingPlugin**: behind `cfg(debug)`, toggle with F3; F11 prints HoverMap to stderr
+- **bevy_dev_tools**: added under `debug` feature flag
+
+## v0.23.0
+
+- **UI scroll**: mouse-wheel scrolling on all scrollable panels via vendored `bevy_scrollbar`
+  - Unit list, companions, creative catalog, crafting, build menu, chat — all scroll with visible scrollbar thumbs
+  - Chat: scrollbar visible only when panel open (T key), auto-scroll to bottom on new messages
+- **UI picking fix**: removed 5 fullscreen positioning overlays (HotbarUiRoot, BuildMenuOverlay, ToolbarRoot, SettlementBarRoot, OverseerUiRoot) that blocked `bevy_picking` for all UI
+- **Hover effects**: `CardBaseColor` component + `Hovered` (CSS-like, includes descendants) for card hover feedback across all panels
+- **Build menu redesign**: inventory-style 64×64 grid cards, replaces toolbar when open, 40vh height, grid layout
+- **Camera FPS fix**: removed unnecessary `fov_dirty`/`lighting_dirty` flags from overseer camera pan — fixes 180→25 FPS drop during camera movement
+- **Sprite/mesh picking disabled**: `require_markers: true` on `SpritePickingSettings`/`MeshPickingSettings` to prevent picking overhead on game world entities
+- **Theme constants**: `SCROLLBAR_WIDTH`, `SCROLLBAR_THUMB`, `BORDER_WIDTH` added to `UiTheme`
+- **Creative catalog**: proper scroll (only grid scrolls, title fixed), `GlobalZIndex(25)`, width 220px
+- **Crafting panel**: scrollbar, `GlobalZIndex(25)`, recipe rebuild cache to prevent per-frame respawn
+
+## v0.22.0
+
+- **Sprite system**: texture atlases, palette, item/unit icons, JetBrains Mono font
+
+## v0.21.0
 
 - **UI redesign**: complete dark theme with floating semi-transparent panels replacing the old embedded UI
 - **HUD**: top-left floating overlay with level badge, HP bar, EP bar (no background)

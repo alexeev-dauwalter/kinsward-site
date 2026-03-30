@@ -159,6 +159,48 @@ kinswardctl region-map biome --format stats
 kinswardctl region-map temperature --format png --path temp.png
 ```
 
+## Mode & Camera Control
+
+Switch between game modes and control the camera remotely:
+
+```bash
+# Switch to overseer mode for RTS-style control
+kinswardctl switch-mode overseer
+
+# Move the camera and zoom to an area of interest
+kinswardctl camera-move 20 15
+kinswardctl camera-zoom 1.5
+
+# Select units and issue commands
+kinswardctl select 4294967305
+kinswardctl selection
+
+# Change the rendering z-level
+kinswardctl set-active-z 0
+
+# Return to adventure mode
+kinswardctl switch-mode adventure
+```
+
+## Crafting Workflow
+
+```bash
+# Check which station is nearby
+kinswardctl nearby-station
+
+# See available recipes (based on inventory + station)
+kinswardctl recipes
+
+# See all recipes in the game
+kinswardctl recipes --all
+
+# Craft a recipe by ID
+kinswardctl craft 1
+
+# Check inventory after crafting
+kinswardctl inventory
+```
+
 ## Scripting with JSON Mode
 
 Use `--json` for machine-readable output, perfect for scripting:
