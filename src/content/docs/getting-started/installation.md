@@ -35,31 +35,39 @@ assets/
 
 ## Command-Line Options
 
-| Flag | Description |
-|------|-------------|
-| `--debug` | Enable debug mode (physics gizmos, test items, admin panel) |
-| `--seed <N>` | Set world generation seed |
-| `--save <NAME>` | Load a save file on startup, skipping world generation |
+```
+./kinsward [--debug] [COMMAND]
+```
+
+| Flag / Subcommand | Description |
+|-------------------|-------------|
+| `--debug` | Enable debug mode (physics gizmos, F3/F11 debug keys, admin panel) |
+| `new [--seed N]` | Create a new world (optional seed); skips main menu |
+| `load <name>` | Load a save file; skips main menu |
+| *(no subcommand)* | Start at the main menu |
 
 ### Environment Variables
 
 | Variable | Description |
 |----------|-------------|
 | `DEBUG=true` | Same as `--debug` |
-| `WORLD_SEED=N` | Fallback seed (CLI `--seed` takes priority) |
+| `WORLD_SEED=N` | Fallback seed (`new --seed` takes priority) |
 
 ### Examples
 
 ```bash
-# Normal run
+# Start at the main menu
 ./kinsward
 
-# Debug mode with a specific seed
-./kinsward --debug --seed 42
+# New world with a specific seed
+./kinsward new --seed 42
 
-# Load a save file directly (skip world generation)
-./kinsward --save quicksave
+# Load a save file directly
+./kinsward load quicksave
+
+# Debug mode + new world with random seed
+./kinsward --debug new
 
 # Seed via environment variable
-WORLD_SEED=42 ./kinsward
+WORLD_SEED=42 ./kinsward new
 ```

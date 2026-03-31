@@ -5,7 +5,20 @@ description: Kinsward release history
 
 Release notes are also available on the [GitHub Releases page](https://github.com/alexeev-dauwalter/kinsward-site/releases).
 
-## v0.25.0 (Current)
+## v0.26.1 (Current)
+
+- **Debug guard**: F3 (debug picking toggle), F11 (hover debug info), and physics gizmos now require `--debug` flag — disabled in normal gameplay
+- **Physics gizmos sync**: `sync_physics_gizmos_to_debug` ensures physics gizmos match debug UI visibility on startup
+
+## v0.26.0
+
+- **GamePhase state machine**: 4 states — MainMenu → WorldGen / Loading → Playing; UI systems spawn only on `OnEnter(Playing)`
+- **CLI subcommands**: `new [--seed N]` creates a new world, `load <name>` loads a save; replaces old `--seed` / `--save` flags
+- **Main menu screen**: stub screen with "KINSWARD" title; auto-transitions to WorldGen (or Loading if `load` subcommand used)
+- **Loading screen**: displayed on `load <name>`, blocks interaction with `FocusPolicy::Block` + `ZIndex(300)`, transitions to Playing on success
+- **UI deferred to Playing**: 12+ UI systems (chat, companions, crafting, hotbar, inventory, FPS, tooltip, admin menu, control hints, creative catalog, HUD, save menu) moved from Startup to `OnEnter(GamePhase::Playing)`
+
+## v0.25.0
 
 - **14 new GameCommand variants**: SwitchMode, SetToolMode, CameraMove, CameraZoom, SelectUnit, DeselectAll, QuerySelection, SetActiveZ, SetFloorCover, RemoveFloorCover, QueryLight, QueryInventory, QueryPerf
 - **Command stubs connected**: SaveWorld/LoadWorld wired to SaveIntent/LoadIntent; QueryRecipes/Craft/QueryNearbyStation wired to CraftingRegistry
