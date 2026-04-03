@@ -1,0 +1,35 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "d24f165267f4",
+  "session_id": "f4cde524-2852-481b-b663-1f806e194302",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-03T15:52:19.313906993Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/content/docs/development/architecture.md",
+    "src/content/docs/development/changelog.md",
+    "src/content/docs/development/roadmap.md",
+    "src/content/docs/getting-started/download.md",
+    "src/content/docs/index.mdx"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "2fc56b94f09a",
+  "token_usage": {
+    "input_tokens": 223,
+    "cache_creation_tokens": 97300,
+    "cache_read_tokens": 926624,
+    "output_tokens": 7185,
+    "api_call_count": 23
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-03T15:52:19.186875356Z",
+    "agent_lines": 82,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 82,
+    "agent_percentage": 100
+  },
+  "transcript_path": ".claude/projects/-home-peter-alexeev-Projects-kinsward-site/f4cde524-2852-481b-b663-1f806e194302.jsonl"
+}
