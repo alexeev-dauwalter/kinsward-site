@@ -39,6 +39,12 @@ Core engine and gameplay loop.
 - [x] UI system — dark theme, floating panels, HUD, InputRegistry, UiAnimator
 - [x] Map view — dedicated mode with layer switching, zoom, and pan
 - [x] Admin menu — debug-only panel for game administration
+- [x] Performance diagnostics — per-system timings, `kinswardctl perf`
+- [x] Rendering optimizations — state matrix diffing, entity pooling, FOV/lighting culling
+- [x] 2D Bloom — camera bloom effect
+- [x] Sprite icons in UI — texture atlas icons replace text labels across all panels
+- [x] WASM web support — canvas fills browser viewport, web-ready asset loading
+- [x] Nameplate visibility — shown only on selection or hover, hidden by default
 
 ### In Progress
 

@@ -15,6 +15,7 @@ Download the latest build from GitHub Releases:
 |----------|-------------|--------|
 | Linux | x86_64 | `.tar.gz` |
 | Windows | x86_64 | `.zip` |
+| Web | WASM | Browser (experimental) |
 
 :::note
 Releases are published automatically when a new version is tagged. If no releases are available yet, check back soon.

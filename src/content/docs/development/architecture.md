@@ -131,13 +131,25 @@ Mode switching triggers camera transitions and input handler swaps.
 - **UI picking** — panels use direct `PositionType::Absolute` positioning (no fullscreen wrapper overlays). Sprite/mesh picking disabled via `require_markers: true`. Non-interactive child nodes use `Pickable::IGNORE`
 - **UiSlotManager** — centralized panel management system
 
+### Diagnostics
+
+`SystemTimings` resource tracks per-system execution times. Accessible via the `QueryPerf` TCP command and `kinswardctl perf`.
+
 ### Surface Index
 
 Maps `(x, y)` columns to walkable z-levels. Used by pathfinding and grounding to determine where units can stand. Rebuilt when blocks change.
 
 ## Rendering
 
-Tile-based rendering: one Bevy entity per visible tile. Sprites come from 10px-cell texture atlases scaled 3.2× to fill the 32px tile size.
+Tile-based rendering: one Bevy entity per visible tile. Sprites come from 10px-cell texture atlases scaled 3.2× to fill the 32px tile size. 2D bloom (intensity 0.2) is applied to the camera.
+
+Performance optimizations:
+
+- **Rendered State Matrix** — fingerprint-based diffing skips ~98% of unchanged tiles each frame
+- **Entity pooling** — tile entities are recycled instead of spawned/despawned
+- **FOV viewport culling** — shadowcast computation skipped for observers outside the viewport
+- **Lighting viewport culling** — XY culling for emitters in light propagation
+- **Incremental FOV merge** — refcounted visibility replaces full clear-and-rebuild
 
 Final tile color formula:
 
@@ -149,18 +161,21 @@ color = base_color × depth_factor × light_value × visibility
 
 | Module | Responsibility |
 |--------|---------------|
+| `src/core/` | Game phase state machine, system scheduling (GameSet), input registry, diagnostics timing |
 | `src/world/` | WorldMap, blocks, chunks, layers, surfaces, grounding |
 | `src/commands/` | GameCommand, executor, TCP server, region-map export |
 | `src/render/` | Viewport, sprites, FPS display |
-| `src/fov/` | Shadowcasting FOV, visibility maps |
-| `src/lighting/` | Light propagation |
+| `src/fov/` | Shadowcasting FOV, visibility maps, refcounted multi-observer |
+| `src/lighting/` | Light propagation with viewport culling |
 | `src/generation/` | Procedural generation, climate pipeline (16 modules) |
+| `src/inventory/` | Items, block-item mapping, inventory UI, hotbar |
+| `src/interaction/` | Block mining/placing, pickup/drop, world items |
+| `src/movement/` | Player entity/movement, movement rules, elevation barriers, proximity, physics |
 | `src/units/` | Unit components (Race, Faction, UnitTraits), spawner, possession, movement |
 | `src/names/` | Name generation: NameGenerator, UnitName, WorldName, syllable tables |
 | `src/overseer/` | RTS mode: camera, selection, commands, pathfinding, tasks |
 | `src/companions/` | Companion behaviors |
 | `src/ui/` | UI system — UiTheme, InputRegistry, UiAnimator, floating panels |
-| `src/schedule.rs` | GameSet definition and ordering |
 
 ## Binaries
 

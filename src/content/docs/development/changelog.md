@@ -5,7 +5,61 @@ description: Kinsward release history
 
 Release notes are also available on the [GitHub Releases page](https://github.com/alexeev-dauwalter/kinsward-site/releases).
 
-## v0.26.1 (Current)
+## v0.33.0 (Current)
+
+- **Module reorganization**: flat source files reorganized into four new modules
+  - `src/core/` — game_phase, schedule, input_registry, diagnostics
+  - `src/inventory/` — items, block_item, inventory UI, hotbar
+  - `src/interaction/` — block mining/placing, pickup_drop, world_item
+  - `src/movement/` — player, rules, barriers, proximity, physics
+
+## v0.32.1
+
+- **Nameplate visibility**: nameplates hidden by default, shown only when the unit is selected or the cursor hovers within 1 tile
+- **Layout flicker fix**: nameplates use `Visibility::Hidden` until layout computes their size, preventing a single-frame pop
+
+## v0.32.0
+
+- **Dead code cleanup**: removed unused variables, imports, and function parameters across the codebase
+- **Rendering & FOV optimizations**: further performance improvements to shadowcasting, lighting propagation, and tile rendering
+
+## v0.31.0
+
+- **WASM web support**: canvas fills the browser viewport (`fit_canvas_to_parent`), asset meta check disabled for web builds (`AssetMetaCheck::Never`)
+- **Web-ready index.html**: `<canvas id="bevy">` with 100% viewport CSS
+
+## v0.30.0
+
+- **Sprite icons in UI**: toolbar, unit list, companion panel, nameplate, unit detail, and inventory equipment slots now display sprite icons from texture atlases instead of text labels
+- **New data**: updated sprite coordinates in `blocks.ron`/`items.ron`, new items and Grass block
+
+## v0.29.0
+
+- **2D Bloom**: bloom effect added to the camera (intensity 0.2)
+- **Overlay tile fix**: overlay tiles (lanterns, stairs) no longer disappear when the player moves — `OverlayTile` now tracks position and despawns only the affected tile instead of all overlays
+
+## v0.28.0
+
+- **Chat fixes**: scroll works correctly, `Pickable` toggle on open/close, proper z-ordering via `UiSlot::BOTTOM_LEFT_OPEN`
+- **Tooltip & drag icon**: `GlobalZIndex(200)` — always renders on top of all UI
+- **Unit list & companion panel**: incremental rebuild eliminates per-frame flickering
+- **Scrollbar fixes**: guard against division by zero, ratio clamped to 1.0
+- **Admin menu**: ON/OFF button states correct on first open
+- **Colony join message**: format changed to "Name (Race) Level N joined the colony"
+- **Hotbar**: `Pickable::IGNORE` on outer container to prevent click interception
+- **FocusPolicy::Block removed**: legacy focus policy removed from 11 files
+
+## v0.27.0
+
+- **Diagnostics system**: `SystemTimings` resource + `QueryPerf` TCP command + `kinswardctl perf`
+- **Rendered State Matrix**: fingerprint-based diffing skips ~98% of unchanged tiles
+- **Incremental FOV merge**: refcounted visibility replaces full clear-and-rebuild per frame
+- **Entity pooling**: tile entities recycled instead of spawned/despawned each frame
+- **FOV viewport culling**: shadowcast skipped for observers outside the viewport
+- **Lighting viewport culling**: XY culling for emitters in `propagate_lighting`
+- **FOV→Lighting decoupled**: `lighting_dirty` no longer set from `compute_fov`
+
+## v0.26.1
 
 - **Debug guard**: F3 (debug picking toggle), F11 (hover debug info), and physics gizmos now require `--debug` flag — disabled in normal gameplay
 - **Physics gizmos sync**: `sync_physics_gizmos_to_debug` ensures physics gizmos match debug UI visibility on startup
