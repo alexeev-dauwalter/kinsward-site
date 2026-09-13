@@ -25,6 +25,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm audit --prod --audit-level high
       - run: pnpm run build
       - run: echo "kinsward.dwltr.life" > dist/CNAME
       - uses: actions/upload-pages-artifact@v3

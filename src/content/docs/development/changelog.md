@@ -5,7 +5,23 @@ description: Kinsward release history
 
 Release notes are also available on the [GitHub Releases page](https://github.com/alexeev-dauwalter/kinsward-site/releases).
 
-## v0.33.0 (Current)
+## v0.35.0 (Current)
+
+- **Stockpile zones**: draw storage areas in Overseer mode with filters, priorities, and labels
+- **Containers**: chest, barrel, and crate inventories with a dedicated sorting UI
+- **Automatic hauling**: units move items through pickup and delivery task stages
+- **Robust task lifecycle**: deleting a destination or changing its filter cancels affected haul commands
+- **Save/load support**: stockpiles, containers, and haul state persist with the world
+- **Zone editing**: partial deletion splits disconnected zone components correctly
+
+## v0.34.0
+
+- **Unified interaction intents**: keyboard, mouse, and CLI actions use one resolver
+- **Facing direction**: the last movement direction determines keyboard interaction targets
+- **Interactable entities**: shared foundation for containers and crafting stations
+- **kinswardctl interaction**: external tools can issue the same interaction command as the player
+
+## v0.33.0
 
 - **Module reorganization**: flat source files reorganized into four new modules
   - `src/core/` — game_phase, schedule, input_registry, diagnostics

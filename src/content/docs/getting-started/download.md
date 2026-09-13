@@ -15,7 +15,9 @@ Download the latest build from GitHub Releases:
 |----------|-------------|--------|
 | Linux | x86_64 | `.tar.gz` |
 | Windows | x86_64 | `.zip` |
-| Web | WASM | Browser (experimental) |
+
+The codebase contains experimental WASM support, but a browser build is not
+currently included in public releases.
 
 :::note
 Releases are published automatically when a new version is tagged. If no releases are available yet, check back soon.

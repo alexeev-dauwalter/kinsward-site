@@ -43,7 +43,7 @@ Core engine and gameplay loop.
 - [x] Rendering optimizations — state matrix diffing, entity pooling, FOV/lighting culling
 - [x] 2D Bloom — camera bloom effect
 - [x] Sprite icons in UI — texture atlas icons replace text labels across all panels
-- [x] WASM web support — canvas fills browser viewport, web-ready asset loading
+- [x] WASM foundation — browser canvas and web-ready asset loading
 - [x] Nameplate visibility — shown only on selection or hover, hidden by default
 
 ### In Progress
@@ -63,7 +63,9 @@ Core engine and gameplay loop.
 
 - [x] Overseer UI panels — Settlement Bar, Toolbar, Unit List, Unit Detail, Build Menu
 - [ ] Building blueprints and templates
-- [ ] Stockpile zones
+- [x] Stockpile zones, filters, priorities, and labels
+- [x] Chest, barrel, and crate containers with sorting UI
+- [x] Automatic hauling to stockpiles and containers
 - [ ] Farming and food production
 
 ## Phase 3 — Living World
